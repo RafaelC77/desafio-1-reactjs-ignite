@@ -16,6 +16,9 @@ export function TaskList() {
 
   function handleCreateNewTask() {
     // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
+
+    // Solução do professor: if (!newTaskTitle) return; OBS: Uma string vazia retorna um valor falsy.
+
     const isEmpty = newTaskTitle.trim() === "";
 
     if (!isEmpty) {
@@ -28,6 +31,8 @@ export function TaskList() {
       };
 
       setTasks((previousState) => [...previousState, newTask]);
+      // Solução do professor para resetar o input:
+      setNewTaskTitle("");
     }
   }
 
@@ -39,6 +44,11 @@ export function TaskList() {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, isComplete: completion } : task
     );
+
+    /* Solução do professor:
+
+      const newTasks = tasks.map( task => task.id === id ? {...task, isComplete: !task.isComplete} : task);
+    */
 
     setTasks(updatedTasks);
   }
